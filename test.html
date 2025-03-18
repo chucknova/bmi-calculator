@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <input type="number" name="weight" id="weight">
+    <input type="number" name="height" id="height">
+    <button onclick="displayBmi()">Calculate</button>
+    <div id="displayBMI">
+
+    </div>
+    <script>
+        let height = document.getElementById("height")
+        let weight = document.getElementById("weight")
+        let output = document.getElementById("displayBMI")
+
+        function displayBmi() {
+            let weightOutput = weight.value
+            let heightOutput = height.value
+
+            if (weightOutput.trim() === '' || heightOutput.trim() === '') {
+                alert('Please enter a value')
+            } else {
+                let myBmi = calculateBMI(weightOutput, heightOutput)
+                if (myBmi < 18.5) {
+                    output.innerHTML = `Your BMI is ${myBmi}, you are underweight`
+                }
+                else if (myBmi >= 18.5 && myBmi <= 24.9) {
+                     output.innerHTML = `Your BMI is ${myBmi}, you are normal weight`
+                }
+                else if (myBmi > 24.9 && myBmi <= 29.9) {
+                     output.innerHTML = `Your BMI is ${myBmi}, you are overweight`
+                }
+                else {
+                     output.innerHTML = `Your BMI is ${myBmi}, you are obese`
+                }
+            }
+        }
+        function calculateBMI(weight, height) {
+            return weight / height ** 2
+            
+        }
+    </script>
+</body>
+
+</html>

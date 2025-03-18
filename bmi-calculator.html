@@ -189,14 +189,14 @@ button:hover {
         <div class="input-group">
             <div class="input-wrapper">
                 <label for="weight">Weight</label>
-                <input type="number" name="weight" id="weight" placeholder="Enter your weight">
-                <span class="unit">kg</span>
+                <input type="number" name="weight" id="weight" placeholder="Enter your weight in kg">
+                <!-- <span class="unit">kg</span> -->
             </div>
 
             <div class="input-wrapper">
                 <label for="height">Height</label>
-                <input type="number" name="height" id="height" placeholder="Enter your height">
-                <span class="unit">m</span>
+                <input type="number" name="height" id="height" placeholder="Enter your height in m">
+                <!-- <span class="unit">m</span> -->
             </div>
 
             <button onclick="calculateBMI()">Calculate Your BMI</button>
@@ -248,7 +248,7 @@ button:hover {
             displayBMI.innerHTML = `
                 <div class="bmi-result">
                     <div>Your BMI is</div>
-                    <div class="bmi-value">${bmi}</div>
+                    <div class="bmi-value">${Math.round(bmi * 10) / 10}</div>
                     <div class="bmi-category ${categoryClass}">${category}</div>
                 </div>
             `;
