@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cereal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bmi.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <p class="subtitle">Check your body mass index (BMI) to see if you're at a healthy weight</p>
+
+        <div class="input-group">
+            <div class="input-wrapper">
+                <label for="weight">Weight</label>
+                <input type="number" name="weight" id="weight" placeholder="Enter your weight">
+                <span class="unit">kg</span>
+            </div>
+
+            <div class="input-wrapper">
+                <label for="height">Height</label>
+                <input type="number" name="height" id="height" placeholder="Enter your height">
+                <span class="unit">m</span>
+            </div>
+
+            <button onclick="calculateBMI()">Calculate Your BMI</button>
+        </div>
+
+        <div id="displayBMI"></div>
+
+        <div class="bmi-info">
+            <p>BMI Categories:<br>
+                Underweight: Less than 18.5<br>
+                Normal weight: 18.5 to 24.9<br>
+                Overweight: 25 to 29.9<br>
+                Obese: 30 or more</p>
+        </div>
+    </div>
+
+    <script>
+        let weight = document.getElementById("weight")
+        let height = document.getElementById("height")
+        let displayBMI = document.getElementById("displayBMI")
+
+        function calculateBMI() {
+            const bmi = parseFloat(weight.value) / (parseFloat(height.value) * parseFloat(height.value))
+
+            function checkWeight(underweight = bmi < 18.5, normalweight = bmi > 18.5 && bmi < 24.9, overweight = bmi >= 25 && bmi < 29.9, obese = bmi > 30) {
+                console.log(bmi);
+
+                if (underweight) {
+                    console.log("You're Underweight");
+                    displayResult(bmi, "Underweight", "underweight");
+                }
+                else if (normalweight) {
+                    console.log("You're Normal Weight");
+                    displayResult(bmi, "Normal Weight", "normal");
+                }
+                else if (overweight) {
+                    console.log("You're Overweight");
+                    displayResult(bmi, "Overweight", "overweight");
+                }
+                else if (obese) {
+                    console.log("You're Obese");
+                    displayResult(bmi, "Obese", "obese");
+                }
+            }
+            checkWeight()
+        }
+        
+        function displayResult(bmi, category, categoryClass) {
+            displayBMI.innerHTML = `
+                <div class="bmi-result">
+                    <div>Your BMI is</div>
+                    <div class="bmi-value">${bmi.toFixed(1)}</div>
+                    <div class="bmi-category ${categoryClass}">${category}</div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>
